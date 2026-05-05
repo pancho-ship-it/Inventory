@@ -48,7 +48,7 @@ DATA_FILE = _tmp_data if not os.access(BASE_DIR, os.W_OK) else _local_data
 
 
 # Use Flask default templates/ folder next to app.py
-app = Flask(__name__)
+app = Flask(__name__, template_folder=BASE_DIR)
 app.secret_key = os.environ.get('SECRET_KEY', 'rmgc-change-this-secret-2024')
 
 # ── USER ACCOUNTS ─────────────────────────────────────────────────────────────
