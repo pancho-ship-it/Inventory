@@ -77,51 +77,51 @@ USERS = {
 
 # ── DEFAULT DATA (file fallback only) ─────────────────────────────────────────
 DEFAULT_PRODUCTS = [
-  {"id":"1","name":"Grisu (Iprodione)","category":"Fungicide","activeIngredient":"Iprodione","unitSize":1.0,"unit":"L","packCost":41.5,"supplier":"Ortis","stock":0.5,"reorderLevel":2.0,"notes":""},
-  {"id":"2","name":"Emerald Fungicide","category":"Fungicide","activeIngredient":"Boscalid 70% WG","unitSize":1.0,"unit":"kg","packCost":25.0,"supplier":"Ortis","stock":1.0,"reorderLevel":2.0,"notes":""},
-  {"id":"3","name":"Aliette WG","category":"Fungicide","activeIngredient":"Fosetyl-Aluminium 80%","unitSize":1.0,"unit":"kg","packCost":28.50,"supplier":"Ortis","stock":2.0,"reorderLevel":2.0,"notes":"FRAC P07"},
-  {"id":"4","name":"Previter","category":"Fungicide","activeIngredient":"Propiconazole 250 g/L","unitSize":1.0,"unit":"L","packCost":22.00,"supplier":"Ortis","stock":1.0,"reorderLevel":2.0,"notes":"FRAC 3"},
-  {"id":"5","name":"Eagle 20EW","category":"Fungicide","activeIngredient":"Myclobutanil 20%","unitSize":1.0,"unit":"L","packCost":30.5,"supplier":"Ortis","stock":2.0,"reorderLevel":2.0,"notes":"FRAC 3"},
-  {"id":"6","name":"Feinzin (Metribuzin)","category":"Herbicide","activeIngredient":"Metribuzin 35 g/kg","unitSize":0.5,"unit":"kg","packCost":5.0,"supplier":"Ortis","stock":10.0,"reorderLevel":3.0,"notes":""},
-  {"id":"7","name":"Foxtail (Fenoxaprop)","category":"Herbicide","activeIngredient":"Fenoxaprop 28 g/L","unitSize":1.0,"unit":"L","packCost":5.0,"supplier":"Ortis","stock":9.0,"reorderLevel":3.0,"notes":""},
-  {"id":"8","name":"Hi Aktiv","category":"Herbicide","activeIngredient":"Glyphosate 490 g/L","unitSize":5.0,"unit":"L","packCost":40.89,"supplier":"RT","stock":4.0,"reorderLevel":2.0,"notes":""},
-  {"id":"9","name":"Junction (Florasulam+2,4D)","category":"Herbicide","activeIngredient":"Florasulam + 2,4-D","unitSize":5.0,"unit":"L","packCost":231.79,"supplier":"RT","stock":10.0,"reorderLevel":3.0,"notes":""},
-  {"id":"10","name":"Titus + Vibolt","category":"Herbicide","activeIngredient":"Rimsulfuron + Adjuvant","unitSize":0.5,"unit":"kg","packCost":33.93,"supplier":"Nexles","stock":4.0,"reorderLevel":2.0,"notes":""},
-  {"id":"11","name":"Mavrik","category":"Herbicide","activeIngredient":"Tau-fluvalinate","unitSize":5.0,"unit":"mL","packCost":1.45,"supplier":"Nexles","stock":10.0,"reorderLevel":3.0,"notes":""},
-  {"id":"12","name":"Dicopur Top + Cerlit","category":"Herbicide","activeIngredient":"MCPA + Dicamba / Mecoprop-P","unitSize":1.0,"unit":"L","packCost":19.7,"supplier":"Nexles","stock":13.0,"reorderLevel":3.0,"notes":""},
-  {"id":"13","name":"Kerb Flo 400 SC","category":"Herbicide","activeIngredient":"Propyzamide 400 g/L","unitSize":1.0,"unit":"L","packCost":80.0,"supplier":"Agius","stock":1.0,"reorderLevel":2.0,"notes":"Apply soil temp <10°C"},
-  {"id":"14","name":"Kerb 80","category":"Herbicide","activeIngredient":"Propyzamide 800 g/kg","unitSize":1.0,"unit":"kg","packCost":132.0,"supplier":"Agius","stock":0.0,"reorderLevel":1.0,"notes":""},
-  {"id":"15","name":"Stomp","category":"Herbicide","activeIngredient":"Pendimethalin 330 g/L","unitSize":1.0,"unit":"L","packCost":28.91,"supplier":"Nexles","stock":2.0,"reorderLevel":2.0,"notes":""},
-  {"id":"16","name":"Cerlit","category":"Herbicide","activeIngredient":"Mecoprop-P","unitSize":1.0,"unit":"L","packCost":61.04,"supplier":"Nexles","stock":12.0,"reorderLevel":3.0,"notes":""},
-  {"id":"17","name":"Pendimethalin 33 EC","category":"Herbicide","activeIngredient":"Pendimethalin 330 g/L","unitSize":5.0,"unit":"L","packCost":38.50,"supplier":"Various","stock":4.0,"reorderLevel":2.0,"notes":"Pre-emergent – Poa annua"},
-  {"id":"18","name":"Euiq","category":"Herbicide","activeIngredient":"Foramsulfuron","unitSize":1.0,"unit":"L","packCost":50.0,"supplier":"","stock":10.0,"reorderLevel":2.0,"notes":""},
-  {"id":"19","name":"Clearcast Herbicide","category":"Insecticide","activeIngredient":"Ammonium salt of imazamox 12.1%","unitSize":10.0,"unit":"L","packCost":45.0,"supplier":"RT","stock":1.0,"reorderLevel":2.0,"notes":""},
-  {"id":"20","name":"Lepinox","category":"Insecticide","activeIngredient":"Bacillus thuringiensis","unitSize":2.0,"unit":"kg","packCost":29.92,"supplier":"Ortis","stock":1.0,"reorderLevel":2.0,"notes":"Biological"},
-  {"id":"21","name":"Mospilan 20 SG","category":"Insecticide","activeIngredient":"Acetamiprid 20%","unitSize":0.5,"unit":"kg","packCost":132.0,"supplier":"Ortis","stock":1.5,"reorderLevel":2.0,"notes":"IRAC 4A"},
-  {"id":"22","name":"Deltagri EC","category":"Insecticide","activeIngredient":"Deltamethrin 2.5%","unitSize":1.0,"unit":"L","packCost":30.0,"supplier":"Ortis","stock":2.0,"reorderLevel":2.0,"notes":"HIGH HAZARD near water"},
-  {"id":"23","name":"Maintain PGR","category":"PGR","activeIngredient":"Trinexapac-ethyl 120 g/L","unitSize":5.0,"unit":"L","packCost":243.99,"supplier":"RT","stock":11.0,"reorderLevel":3.0,"notes":"Group 16"},
-  {"id":"24","name":"Duraline Flush Thru","category":"Wetting Agent","activeIngredient":"Pipe cleaner / flush agent","unitSize":10.0,"unit":"L","packCost":20.0,"supplier":"RT","stock":1.0,"reorderLevel":1.0,"notes":""},
-  {"id":"25","name":"Revolution Wetting Agent","category":"Wetting Agent","activeIngredient":"Proprietary polyether polymers","unitSize":10.0,"unit":"L","packCost":202.0,"supplier":"Rimesa","stock":0.0,"reorderLevel":5.0,"notes":"20 L/ha on greens Mar–Sep"},
-  {"id":"26","name":"K 0-0-50 WS","category":"Fertiliser","activeIngredient":"Potassium sulphate 0-0-50","unitSize":25.0,"unit":"kg","packCost":10.0,"supplier":"Agius","stock":12.0,"reorderLevel":3.0,"notes":""},
-  {"id":"27","name":"Microlite TE","category":"Fertiliser","activeIngredient":"Trace elements blend","unitSize":20.0,"unit":"kg","packCost":44.71,"supplier":"RT","stock":5.0,"reorderLevel":2.0,"notes":""},
-  {"id":"28","name":"Trimate (Amino+Fulvic)","category":"Fertiliser","activeIngredient":"L-form amino acids, Fulvic Acid","unitSize":5.0,"unit":"L","packCost":34.33,"supplier":"RT","stock":7.0,"reorderLevel":2.0,"notes":"Biostimulant"},
-  {"id":"29","name":"Urea 46-0-0","category":"Fertiliser","activeIngredient":"Urea 46%N","unitSize":25.0,"unit":"kg","packCost":13.78,"supplier":"Ortis","stock":1.0,"reorderLevel":3.0,"notes":""},
-  {"id":"30","name":"12-12-17 Granular","category":"Fertiliser","activeIngredient":"NPK 12-12-17","unitSize":25.0,"unit":"kg","packCost":23.82,"supplier":"Ortis","stock":0.0,"reorderLevel":3.0,"notes":""},
-  {"id":"31","name":"Calcium Nitrate","category":"Fertiliser","activeIngredient":"Calcium Nitrate 15.5% N","unitSize":25.0,"unit":"kg","packCost":18.50,"supplier":"Ortis","stock":0.0,"reorderLevel":2.0,"notes":""},
-  {"id":"32","name":"Potassium Nitrate","category":"Fertiliser","activeIngredient":"Potassium Nitrate 13% N 46% K","unitSize":25.0,"unit":"kg","packCost":24.00,"supplier":"Ortis","stock":1.0,"reorderLevel":2.0,"notes":""},
-  {"id":"33","name":"Magnesium Nitrate","category":"Fertiliser","activeIngredient":"Magnesium Nitrate 11% N 15% Mg","unitSize":25.0,"unit":"kg","packCost":21.50,"supplier":"Ortis","stock":1.0,"reorderLevel":2.0,"notes":""},
-  {"id":"34","name":"Greenlawnger","category":"Colorant","activeIngredient":"Green pigment / colorant blend","unitSize":1.0,"unit":"L","packCost":23.35,"supplier":"AGV","stock":0.0,"reorderLevel":3.0,"notes":""},
-  {"id":"35","name":"Duraline Spray Paint Yellow","category":"Paint","activeIngredient":"Aerosol paint – yellow","unitSize":6.0,"unit":"cans","packCost":4.27,"supplier":"RT","stock":6.0,"reorderLevel":2.0,"notes":"Box of 6"},
-  {"id":"36","name":"Duraline Spray Paint White","category":"Paint","activeIngredient":"Aerosol paint – white","unitSize":6.0,"unit":"cans","packCost":4.27,"supplier":"RT","stock":6.0,"reorderLevel":2.0,"notes":"Box of 6"},
-  {"id":"37","name":"Duraline Spray Paint Red","category":"Paint","activeIngredient":"Aerosol paint – red","unitSize":6.0,"unit":"cans","packCost":4.27,"supplier":"RT","stock":3.0,"reorderLevel":2.0,"notes":"Box of 6"},
-  {"id":"38","name":"Par Aide Blue","category":"Paint","activeIngredient":"Line marking paint – blue","unitSize":500.0,"unit":"gr","packCost":11.7,"supplier":"Duchell","stock":8.0,"reorderLevel":3.0,"notes":""},
-  {"id":"39","name":"Par Aide Red","category":"Paint","activeIngredient":"Line marking paint – red","unitSize":500.0,"unit":"gr","packCost":11.7,"supplier":"Duchell","stock":15.0,"reorderLevel":3.0,"notes":""},
-  {"id":"40","name":"Par Aide Yellow","category":"Paint","activeIngredient":"Line marking paint – yellow","unitSize":500.0,"unit":"gr","packCost":11.7,"supplier":"Duchell","stock":28.0,"reorderLevel":5.0,"notes":""},
-  {"id":"41","name":"Par Aide White","category":"Paint","activeIngredient":"Line marking paint – white","unitSize":500.0,"unit":"gr","packCost":8.9,"supplier":"Duchell","stock":7.0,"reorderLevel":3.0,"notes":""},
-  {"id":"42","name":"Par Aide Green","category":"Paint","activeIngredient":"Line marking paint – green","unitSize":500.0,"unit":"gr","packCost":11.7,"supplier":"Duchell","stock":6.0,"reorderLevel":3.0,"notes":""},
-  {"id":"43","name":"Thunder Ryegrass","category":"Seeds","activeIngredient":"Perennial ryegrass blend","unitSize":22.7,"unit":"kg","packCost":70.14,"supplier":"Navarro M.","stock":0.0,"reorderLevel":1.0,"notes":""},
-  {"id":"44","name":"Bentgrass Tour Pro","category":"Seeds","activeIngredient":"Creeping bentgrass","unitSize":11.0,"unit":"kg","packCost":489.36,"supplier":"Navarro M.","stock":2.0,"reorderLevel":1.0,"notes":"Greens renovation"},
-  {"id":"45","name":"Rugby Pitch Paint","category":"Seeds","activeIngredient":"White line marking paint","unitSize":5.0,"unit":"kg","packCost":16.0,"supplier":"Big Mat","stock":4.0,"reorderLevel":2.0,"notes":""}
+  {"id":"1","name":"Grisu (Iprodione)","category":"Fungicide","activeIngredient":"Iprodione","unitSize":1.0,"unit":"L","packCost":41.5,"supplier":"Ortis","stock":0.5,"containerCount":2.0,"notes":""},
+  {"id":"2","name":"Emerald Fungicide","category":"Fungicide","activeIngredient":"Boscalid 70% WG","unitSize":1.0,"unit":"kg","packCost":25.0,"supplier":"Ortis","stock":1.0,"containerCount":2.0,"notes":""},
+  {"id":"3","name":"Aliette WG","category":"Fungicide","activeIngredient":"Fosetyl-Aluminium 80%","unitSize":1.0,"unit":"kg","packCost":28.50,"supplier":"Ortis","stock":2.0,"containerCount":2.0,"notes":"FRAC P07"},
+  {"id":"4","name":"Previter","category":"Fungicide","activeIngredient":"Propiconazole 250 g/L","unitSize":1.0,"unit":"L","packCost":22.00,"supplier":"Ortis","stock":1.0,"containerCount":2.0,"notes":"FRAC 3"},
+  {"id":"5","name":"Eagle 20EW","category":"Fungicide","activeIngredient":"Myclobutanil 20%","unitSize":1.0,"unit":"L","packCost":30.5,"supplier":"Ortis","stock":2.0,"containerCount":2.0,"notes":"FRAC 3"},
+  {"id":"6","name":"Feinzin (Metribuzin)","category":"Herbicide","activeIngredient":"Metribuzin 35 g/kg","unitSize":0.5,"unit":"kg","packCost":5.0,"supplier":"Ortis","stock":10.0,"containerCount":3.0,"notes":""},
+  {"id":"7","name":"Foxtail (Fenoxaprop)","category":"Herbicide","activeIngredient":"Fenoxaprop 28 g/L","unitSize":1.0,"unit":"L","packCost":5.0,"supplier":"Ortis","stock":9.0,"containerCount":3.0,"notes":""},
+  {"id":"8","name":"Hi Aktiv","category":"Herbicide","activeIngredient":"Glyphosate 490 g/L","unitSize":5.0,"unit":"L","packCost":40.89,"supplier":"RT","stock":4.0,"containerCount":2.0,"notes":""},
+  {"id":"9","name":"Junction (Florasulam+2,4D)","category":"Herbicide","activeIngredient":"Florasulam + 2,4-D","unitSize":5.0,"unit":"L","packCost":231.79,"supplier":"RT","stock":10.0,"containerCount":3.0,"notes":""},
+  {"id":"10","name":"Titus + Vibolt","category":"Herbicide","activeIngredient":"Rimsulfuron + Adjuvant","unitSize":0.5,"unit":"kg","packCost":33.93,"supplier":"Nexles","stock":4.0,"containerCount":2.0,"notes":""},
+  {"id":"11","name":"Mavrik","category":"Herbicide","activeIngredient":"Tau-fluvalinate","unitSize":5.0,"unit":"mL","packCost":1.45,"supplier":"Nexles","stock":10.0,"containerCount":3.0,"notes":""},
+  {"id":"12","name":"Dicopur Top + Cerlit","category":"Herbicide","activeIngredient":"MCPA + Dicamba / Mecoprop-P","unitSize":1.0,"unit":"L","packCost":19.7,"supplier":"Nexles","stock":13.0,"containerCount":3.0,"notes":""},
+  {"id":"13","name":"Kerb Flo 400 SC","category":"Herbicide","activeIngredient":"Propyzamide 400 g/L","unitSize":1.0,"unit":"L","packCost":80.0,"supplier":"Agius","stock":1.0,"containerCount":2.0,"notes":"Apply soil temp <10°C"},
+  {"id":"14","name":"Kerb 80","category":"Herbicide","activeIngredient":"Propyzamide 800 g/kg","unitSize":1.0,"unit":"kg","packCost":132.0,"supplier":"Agius","stock":0.0,"containerCount":1.0,"notes":""},
+  {"id":"15","name":"Stomp","category":"Herbicide","activeIngredient":"Pendimethalin 330 g/L","unitSize":1.0,"unit":"L","packCost":28.91,"supplier":"Nexles","stock":2.0,"containerCount":2.0,"notes":""},
+  {"id":"16","name":"Cerlit","category":"Herbicide","activeIngredient":"Mecoprop-P","unitSize":1.0,"unit":"L","packCost":61.04,"supplier":"Nexles","stock":12.0,"containerCount":3.0,"notes":""},
+  {"id":"17","name":"Pendimethalin 33 EC","category":"Herbicide","activeIngredient":"Pendimethalin 330 g/L","unitSize":5.0,"unit":"L","packCost":38.50,"supplier":"Various","stock":4.0,"containerCount":2.0,"notes":"Pre-emergent – Poa annua"},
+  {"id":"18","name":"Euiq","category":"Herbicide","activeIngredient":"Foramsulfuron","unitSize":1.0,"unit":"L","packCost":50.0,"supplier":"","stock":10.0,"containerCount":2.0,"notes":""},
+  {"id":"19","name":"Clearcast Herbicide","category":"Insecticide","activeIngredient":"Ammonium salt of imazamox 12.1%","unitSize":10.0,"unit":"L","packCost":45.0,"supplier":"RT","stock":1.0,"containerCount":2.0,"notes":""},
+  {"id":"20","name":"Lepinox","category":"Insecticide","activeIngredient":"Bacillus thuringiensis","unitSize":2.0,"unit":"kg","packCost":29.92,"supplier":"Ortis","stock":1.0,"containerCount":2.0,"notes":"Biological"},
+  {"id":"21","name":"Mospilan 20 SG","category":"Insecticide","activeIngredient":"Acetamiprid 20%","unitSize":0.5,"unit":"kg","packCost":132.0,"supplier":"Ortis","stock":1.5,"containerCount":2.0,"notes":"IRAC 4A"},
+  {"id":"22","name":"Deltagri EC","category":"Insecticide","activeIngredient":"Deltamethrin 2.5%","unitSize":1.0,"unit":"L","packCost":30.0,"supplier":"Ortis","stock":2.0,"containerCount":2.0,"notes":"HIGH HAZARD near water"},
+  {"id":"23","name":"Maintain PGR","category":"PGR","activeIngredient":"Trinexapac-ethyl 120 g/L","unitSize":5.0,"unit":"L","packCost":243.99,"supplier":"RT","stock":11.0,"containerCount":3.0,"notes":"Group 16"},
+  {"id":"24","name":"Duraline Flush Thru","category":"Wetting Agent","activeIngredient":"Pipe cleaner / flush agent","unitSize":10.0,"unit":"L","packCost":20.0,"supplier":"RT","stock":1.0,"containerCount":1.0,"notes":""},
+  {"id":"25","name":"Revolution Wetting Agent","category":"Wetting Agent","activeIngredient":"Proprietary polyether polymers","unitSize":10.0,"unit":"L","packCost":202.0,"supplier":"Rimesa","stock":0.0,"containerCount":5.0,"notes":"20 L/ha on greens Mar–Sep"},
+  {"id":"26","name":"K 0-0-50 WS","category":"Fertiliser","activeIngredient":"Potassium sulphate 0-0-50","unitSize":25.0,"unit":"kg","packCost":10.0,"supplier":"Agius","stock":12.0,"containerCount":3.0,"notes":""},
+  {"id":"27","name":"Microlite TE","category":"Fertiliser","activeIngredient":"Trace elements blend","unitSize":20.0,"unit":"kg","packCost":44.71,"supplier":"RT","stock":5.0,"containerCount":2.0,"notes":""},
+  {"id":"28","name":"Trimate (Amino+Fulvic)","category":"Fertiliser","activeIngredient":"L-form amino acids, Fulvic Acid","unitSize":5.0,"unit":"L","packCost":34.33,"supplier":"RT","stock":7.0,"containerCount":2.0,"notes":"Biostimulant"},
+  {"id":"29","name":"Urea 46-0-0","category":"Fertiliser","activeIngredient":"Urea 46%N","unitSize":25.0,"unit":"kg","packCost":13.78,"supplier":"Ortis","stock":1.0,"containerCount":3.0,"notes":""},
+  {"id":"30","name":"12-12-17 Granular","category":"Fertiliser","activeIngredient":"NPK 12-12-17","unitSize":25.0,"unit":"kg","packCost":23.82,"supplier":"Ortis","stock":0.0,"containerCount":3.0,"notes":""},
+  {"id":"31","name":"Calcium Nitrate","category":"Fertiliser","activeIngredient":"Calcium Nitrate 15.5% N","unitSize":25.0,"unit":"kg","packCost":18.50,"supplier":"Ortis","stock":0.0,"containerCount":2.0,"notes":""},
+  {"id":"32","name":"Potassium Nitrate","category":"Fertiliser","activeIngredient":"Potassium Nitrate 13% N 46% K","unitSize":25.0,"unit":"kg","packCost":24.00,"supplier":"Ortis","stock":1.0,"containerCount":2.0,"notes":""},
+  {"id":"33","name":"Magnesium Nitrate","category":"Fertiliser","activeIngredient":"Magnesium Nitrate 11% N 15% Mg","unitSize":25.0,"unit":"kg","packCost":21.50,"supplier":"Ortis","stock":1.0,"containerCount":2.0,"notes":""},
+  {"id":"34","name":"Greenlawnger","category":"Colorant","activeIngredient":"Green pigment / colorant blend","unitSize":1.0,"unit":"L","packCost":23.35,"supplier":"AGV","stock":0.0,"containerCount":3.0,"notes":""},
+  {"id":"35","name":"Duraline Spray Paint Yellow","category":"Paint","activeIngredient":"Aerosol paint – yellow","unitSize":6.0,"unit":"cans","packCost":4.27,"supplier":"RT","stock":6.0,"containerCount":2.0,"notes":"Box of 6"},
+  {"id":"36","name":"Duraline Spray Paint White","category":"Paint","activeIngredient":"Aerosol paint – white","unitSize":6.0,"unit":"cans","packCost":4.27,"supplier":"RT","stock":6.0,"containerCount":2.0,"notes":"Box of 6"},
+  {"id":"37","name":"Duraline Spray Paint Red","category":"Paint","activeIngredient":"Aerosol paint – red","unitSize":6.0,"unit":"cans","packCost":4.27,"supplier":"RT","stock":3.0,"containerCount":2.0,"notes":"Box of 6"},
+  {"id":"38","name":"Par Aide Blue","category":"Paint","activeIngredient":"Line marking paint – blue","unitSize":500.0,"unit":"gr","packCost":11.7,"supplier":"Duchell","stock":8.0,"containerCount":3.0,"notes":""},
+  {"id":"39","name":"Par Aide Red","category":"Paint","activeIngredient":"Line marking paint – red","unitSize":500.0,"unit":"gr","packCost":11.7,"supplier":"Duchell","stock":15.0,"containerCount":3.0,"notes":""},
+  {"id":"40","name":"Par Aide Yellow","category":"Paint","activeIngredient":"Line marking paint – yellow","unitSize":500.0,"unit":"gr","packCost":11.7,"supplier":"Duchell","stock":28.0,"containerCount":5.0,"notes":""},
+  {"id":"41","name":"Par Aide White","category":"Paint","activeIngredient":"Line marking paint – white","unitSize":500.0,"unit":"gr","packCost":8.9,"supplier":"Duchell","stock":7.0,"containerCount":3.0,"notes":""},
+  {"id":"42","name":"Par Aide Green","category":"Paint","activeIngredient":"Line marking paint – green","unitSize":500.0,"unit":"gr","packCost":11.7,"supplier":"Duchell","stock":6.0,"containerCount":3.0,"notes":""},
+  {"id":"43","name":"Thunder Ryegrass","category":"Seeds","activeIngredient":"Perennial ryegrass blend","unitSize":22.7,"unit":"kg","packCost":70.14,"supplier":"Navarro M.","stock":0.0,"containerCount":1.0,"notes":""},
+  {"id":"44","name":"Bentgrass Tour Pro","category":"Seeds","activeIngredient":"Creeping bentgrass","unitSize":11.0,"unit":"kg","packCost":489.36,"supplier":"Navarro M.","stock":2.0,"containerCount":1.0,"notes":"Greens renovation"},
+  {"id":"45","name":"Rugby Pitch Paint","category":"Seeds","activeIngredient":"White line marking paint","unitSize":5.0,"unit":"kg","packCost":16.0,"supplier":"Big Mat","stock":4.0,"containerCount":2.0,"notes":""}
 ]
 
 DEFAULT_SPRAY_LOG = [
@@ -282,7 +282,7 @@ def get_products(): return jsonify(get_products_data())
 @login_required
 def add_product():
     p = request.json; p['id'] = str(uuid.uuid4())
-    p.setdefault('stock', 0); p.setdefault('reorderLevel', 2); p.setdefault('notes', '')
+    p.setdefault('stock', 0); p.setdefault('containerCount', 2); p.setdefault('notes', '')
     if USE_SUPABASE:
         return jsonify(sb_post('rmgc_products', p)), 201
     data = load_data(); data['products'].append(p); save_data(data)
@@ -362,7 +362,7 @@ def get_log(): return jsonify(get_stocklog_data())
 def get_summary():
     products = get_products_data()
     tv  = sum(float(p.get('packCost', 0)) * float(p.get('stock', 0)) for p in products)
-    low = [p for p in products if 0 < float(p.get('stock', 0)) <= float(p.get('reorderLevel', 2))]
+    low = [p for p in products if 0 < float(p.get('stock', 0)) <= float(p.get('containerCount', 2))]
     out = [p for p in products if float(p.get('stock', 0)) == 0]
     cats = {}
     for p in products: c = p.get('category', 'Other'); cats[c] = cats.get(c, 0) + 1
