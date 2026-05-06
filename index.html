@@ -1456,7 +1456,7 @@ function renderStock(){
     prods.forEach(p=>{
       const sv=(parseFloat(p.packCost||0)*parseFloat(p.stock||0));
       html+=`<tr><td><strong>${p.name}</strong></td><td>${catBadge(p.category)}</td>
-        <td><strong style="font-size:14px">${p.stock}</strong> <small style="color:var(--g400)">${p.unit||''}</small></td>
+        <td><strong style="font-size:14px">${(parseFloat(p.stock||0)*parseFloat(p.unitSize||1)).toFixed(2).replace(/\.00$/,'')}</strong> <small style="color:var(--g400)">${p.unit||''}</small></td>
         <td>${stockTag(p)}</td><td style="color:var(--g600)">${p.reorderLevel}</td>
         <td>€${parseFloat(p.packCost||0).toFixed(2)}</td>
         <td><strong style="color:var(--gd)">€${sv.toFixed(2)}</strong></td>
@@ -1628,9 +1628,8 @@ async function delCalcOp(id){if(!confirm('Delete this operation?'))return;await 
 
 // ── SPRAY LOGS (all years + PDF print) ────────────────────────────────────
 async function loadAllLogs(){
-  const safeApi = (url) => api(url).catch(() => []);
   [allSpray, allHistLog, allSDS]=await Promise.all([
-    safeApi('/api/spraylog'), safeApi('/api/histlog'), safeApi('/api/sds')
+    api('/api/spraylog'), api('/api/histlog'), api('/api/sds')
   ]);
   if(!allProds.length)allProds=await api('/api/products');
   // Reset type selector and product dropdown on load
