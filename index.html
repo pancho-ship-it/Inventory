@@ -1628,8 +1628,9 @@ async function delCalcOp(id){if(!confirm('Delete this operation?'))return;await 
 
 // ── SPRAY LOGS (all years + PDF print) ────────────────────────────────────
 async function loadAllLogs(){
+  const safeApi = (url) => api(url).catch(() => []);
   [allSpray, allHistLog, allSDS]=await Promise.all([
-    api('/api/spraylog'), api('/api/histlog'), api('/api/sds')
+    safeApi('/api/spraylog'), safeApi('/api/histlog'), safeApi('/api/sds')
   ]);
   if(!allProds.length)allProds=await api('/api/products');
   // Reset type selector and product dropdown on load
