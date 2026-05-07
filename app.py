@@ -44,12 +44,16 @@ def sb_post(table, data):
 def sb_patch(table, match_col, match_val, data):
     import urllib.request
     url = f"{SUPABASE_URL}/rest/v1/{table}?{match_col}=eq.{match_val}"
+    print(f"sb_patch [{table}] url={url} data={json.dumps(data)}")
     req = urllib.request.Request(url, data=json.dumps(data).encode(), method='PATCH', headers=sb_headers())
     try:
         with urllib.request.urlopen(req, timeout=10) as r:
+            body = r.read().decode()
+            print(f"sb_patch [{table}] status={r.status} body={body}")
             return r.status < 300
     except urllib.error.HTTPError as e:
-        print(f"sb_patch error [{table}] {e.code}: {e.read().decode()}"); return False
+        err = e.read().decode()
+        print(f"sb_patch error [{table}] {e.code}: {err}"); return False
     except Exception as e:
         print(f"sb_patch error [{table}]: {e}"); return False
 
