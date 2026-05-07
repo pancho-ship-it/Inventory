@@ -288,7 +288,10 @@ def add_product():
     p = request.json; p['id'] = str(uuid.uuid4())
     p.setdefault('stock', 0); p.setdefault('reorderLevel', 2); p.setdefault('notes', '')
     if USE_SUPABASE:
-        return jsonify(sb_post('rmgc_products', p)), 201
+        supabase_p = {**p}
+        if 'containerCount' in supabase_p:
+            supabase_p['reorderLevel'] = supabase_p.pop('containerCount')
+        return jsonify(sb_post('rmgc_products', supabase_p)), 201
     data = load_data(); data['products'].append(p); save_data(data)
     return jsonify(p), 201
 
@@ -297,7 +300,10 @@ def add_product():
 def update_product(pid):
     body = request.json; body.pop('id', None)
     if USE_SUPABASE:
-        sb_patch('rmgc_products', 'id', pid, body)
+        supabase_body = {**body}
+        if 'containerCount' in supabase_body:
+            supabase_body['reorderLevel'] = supabase_body.pop('containerCount')
+        sb_patch('rmgc_products', 'id', pid, supabase_body)
         updated = sb_get('rmgc_products', f'id=eq.{pid}')
         return jsonify(updated[0] if updated else {'id': pid, **body})
     data = load_data()
