@@ -1424,7 +1424,7 @@ async function delProd(id,name){
 }
 
 // ── STOCK ──────────────────────────────────────────────────────────────────
-async function loadStock(){if(!allProds.length)allProds=await api('/api/products');renderStock();}
+async function loadStock(){allProds=await api('/api/products');renderStock();}
 function renderStock(){
   const q=(document.getElementById('ssearch').value||'').toLowerCase();
   const cat=document.getElementById('scat').value;
