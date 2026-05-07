@@ -1415,7 +1415,8 @@ async function saveProd(){
     stock:parseFloat(document.getElementById('pm-stk').value)||0,containerCount:parseFloat(document.getElementById('pm-cc').value)||2,
     notes:document.getElementById('pm-notes').value.trim()};
   const id=document.getElementById('pm-id').value;
-  try{if(id)await api('/api/products/'+id,'PUT',pl);else await api('/api/products','POST',pl);
+  const sendPl={...pl};delete sendPl.containerCount;
+  try{if(id)await api('/api/products/'+id,'PUT',sendPl);else await api('/api/products','POST',sendPl);
     toast(id?'Updated ✓':'Added ✓');closeM('prod-modal');allProds=[];await loadProds();await loadStock();}catch(e){console.error('saveProd error:',e);toast('Error: '+e.message,'error');}
 }
 async function delProd(id,name){
