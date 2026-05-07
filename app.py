@@ -293,9 +293,7 @@ def add_product():
 def update_product(pid):
     body = request.json; body.pop('id', None)
     if USE_SUPABASE:
-        ok = sb_patch('rmgc_products', 'id', pid, body)
-        if not ok:
-            return jsonify({'error': 'Supabase update failed'}), 500
+        sb_patch('rmgc_products', 'id', pid, body)
         updated = sb_get('rmgc_products', f'id=eq.{pid}')
         return jsonify(updated[0] if updated else {'id': pid, **body})
     data = load_data()
