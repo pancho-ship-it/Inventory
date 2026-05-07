@@ -766,8 +766,8 @@ tr:last-child td{border-bottom:none}
       </div>
       <div id="sl-mix-chips" style="display:flex;flex-wrap:wrap;gap:6px;max-height:180px;overflow-y:auto;padding:2px"></div>
       <div id="sl-mix-selected" style="margin-top:8px;padding:8px 10px;background:var(--g50);border-radius:6px;border:1px solid var(--g200);min-height:32px;display:none">
-        <div style="font-size:10px;font-weight:600;color:var(--gm);margin-bottom:4px">Selected products:</div>
-        <div id="sl-mix-tags" style="display:flex;flex-wrap:wrap;gap:4px"></div>
+        <div style="font-size:10px;font-weight:600;color:var(--gm);margin-bottom:6px">Selected products &amp; rates (per ha):</div>
+        <div id="sl-mix-tags" style="display:flex;flex-direction:column;gap:2px"></div>
       </div>
     </div>
 
@@ -1776,7 +1776,7 @@ function filterSprayProds(){
 
   document.getElementById('sl-single-wrap').style.display = isMix ? 'none' : '';
   document.getElementById('sl-mix-wrap').style.display    = isMix ? 'block' : 'none';
-  document.getElementById('sl-rate-wrap').style.display   = '';
+  document.getElementById('sl-rate-wrap').style.display   = isMix ? 'none' : '';
   document.getElementById('sl-mix-count').textContent     = '';
 
   if(isMix){
@@ -1846,10 +1846,21 @@ function updateMixSelected(){
   const tags = document.getElementById('sl-mix-tags');
   if(!count){ wrap.style.display='none'; return; }
   wrap.style.display='block';
+  // Preserve existing rate values when re-rendering
+  const prevRates = {};
+  wrap.querySelectorAll('input[data-mix-rate]').forEach(inp => {
+    prevRates[inp.dataset.mixRate] = inp.value;
+  });
   tags.innerHTML = [...mixSelected].map(name => {
     const cat=(allProds.find(p=>p.name===name)||{}).category||'Other';
     const col=CAT_COLOURS_MIX[cat]||'#555';
-    return `<span style="background:${col}18;color:${col};border:1px solid ${col};border-radius:12px;padding:2px 8px;font-size:11px;font-weight:600">${name}</span>`;
+    const safeId='mix-rate-'+name.replace(/[^a-z0-9]/gi,'_');
+    const prev=prevRates[name]||'';
+    return '<div style="display:flex;align-items:center;gap:6px;width:100%;margin-bottom:4px">'
+      +'<span style="background:'+col+'18;color:'+col+';border:1px solid '+col+';border-radius:12px;padding:2px 10px;font-size:11px;font-weight:600;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+name+'</span>'
+      +'<input type="number" id="'+safeId+'" data-mix-rate="'+name.replace(/"/g,'&quot;')+'" step="0.01" placeholder="Rate/ha" value="'+prev+'"'
+      +' style="width:90px;flex-shrink:0;padding:3px 6px;border:1.5px solid '+col+';border-radius:6px;font-size:11px;font-family:var(--ff);color:'+col+';outline:none;background:#fff">'
+      +'</div>';
   }).join('');
 }
 
@@ -1881,7 +1892,12 @@ async function saveSpray(){
     if(mixSelected.size===0){toast('Select at least one product','error');return;}
     const names=[...mixSelected];
     const mixNote=notes||`Tank mix: ${names.join(' + ')}`;
-    const mixRate=parseFloat(document.getElementById('sl-rate').value)||null;
+    // Collect per-product rates from inputs
+    const mixRates={};
+    document.querySelectorAll('#sl-mix-tags input[data-mix-rate]').forEach(inp=>{
+      const v=parseFloat(inp.value)||null;
+      if(v) mixRates[inp.dataset.mixRate]=v;
+    });
     const btn=document.querySelector('#spray-modal .btn.bp');
     if(btn){btn.disabled=true;btn.textContent='Saving…';}
     let saved=0;
@@ -1889,9 +1905,11 @@ async function saveSpray(){
       // Save sequentially — avoids Flask dev-server concurrent request issues
       for(const name of names){
         const p=allProds.find(x=>x.name===name)||{};
+        const r=mixRates[name]||null;
+        const tot=(r&&area)?parseFloat((r*area).toFixed(3)):null;
         await api('/api/spraylog','POST',{
           date:fdate, product:name, ai:p.activeIngredient||'',
-          type:'MIX', zone, areaha:area, rate:mixRate, total:(mixRate&&area?Math.round(mixRate*area*100)/100:null), notes:mixNote
+          type:'MIX', zone, areaha:area, rate:r, total:tot, notes:mixNote
         });
         saved++;
       }
