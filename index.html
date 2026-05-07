@@ -918,7 +918,7 @@ function closeM(id){document.getElementById(id).classList.add('hidden')}
 document.querySelectorAll('.overlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o){o.classList.add('hidden');document.body.style.overflow=''}}));
 function catBadge(cat){const k=(cat||'Other').replace(/[\s\/]/g,'');return`<span class="badge cat-${k}">${cat||'Other'}</span>`;}
 function typeBadge(t){const k=(t||'Other').replace(/[\s\/]/g,'');return`<span class="badge cat-${k}" style="padding:2px 7px">${t||'—'}</span>`;}
-function stockTag(p){const s=parseFloat(p.stock||0),r=parseFloat(p.containerCount||2);
+function stockTag(p){const s=parseFloat(p.stock||0),r=parseFloat(p.containerCount||p.reorderLevel||2);
   if(s===0)return`<span class="stag out">⚠ Out</span>`;if(s<=r)return`<span class="stag low">↓ Low</span>`;return`<span class="stag ok">✓ OK</span>`;}
 
 // ── DASHBOARD ──────────────────────────────────────────────────────────────
@@ -1403,7 +1403,7 @@ function openEditProd(id){
   document.getElementById('pm-ai').value=p.activeIngredient||'';document.getElementById('pm-sup').value=p.supplier||'';
   document.getElementById('pm-us').value=p.unitSize||1;document.getElementById('pm-unit').value=p.unit||'L';
   document.getElementById('pm-cost').value=p.packCost||0;document.getElementById('pm-stk').value=p.stock||0;
-  document.getElementById('pm-cc').value=p.containerCount||2;document.getElementById('pm-notes').value=p.notes||'';
+  document.getElementById('pm-cc').value=p.containerCount||p.reorderLevel||2;document.getElementById('pm-notes').value=p.notes||'';
   document.getElementById('prod-modal').classList.remove('hidden');
 }
 async function saveProd(){
@@ -1432,7 +1432,7 @@ function renderStock(){
   const rows=allProds.filter(p=>{
     if(q&&!p.name.toLowerCase().includes(q)&&!(p.activeIngredient||'').toLowerCase().includes(q))return false;
     if(cat&&p.category!==cat)return false;
-    const s=parseFloat(p.stock||0),r=parseFloat(p.containerCount||2);
+    const s=parseFloat(p.stock||0),r=parseFloat(p.containerCount||p.reorderLevel||2);
     if(sf==='out'&&s!==0)return false;if(sf==='low'&&(s===0||s>r))return false;if(sf==='ok'&&s<=r)return false;
     return true;});
 
@@ -1457,7 +1457,7 @@ function renderStock(){
       const sv=(parseFloat(p.packCost||0)*parseFloat(p.stock||0));
       html+=`<tr><td><strong>${p.name}</strong></td><td>${catBadge(p.category)}</td>
         <td><strong style="font-size:14px">${(parseFloat(p.stock||0)*parseFloat(p.unitSize||1)).toFixed(2).replace(/\.00$/,'')}</strong> <small style="color:var(--g400)">${p.unit||''}</small></td>
-        <td>${stockTag(p)}</td><td style="color:var(--g600)">${p.containerCount||'—'}</td>
+        <td>${stockTag(p)}</td><td style="color:var(--g600)">${p.containerCount||p.reorderLevel||'—'}</td>
         <td><strong>${p.unitSize||''}</strong> <small style="color:var(--g400)">${p.unit||''}</small></td>
         <td>€${parseFloat(p.packCost||0).toFixed(2)}</td>
         <td><strong style="color:var(--gd)">€${sv.toFixed(2)}</strong></td>
