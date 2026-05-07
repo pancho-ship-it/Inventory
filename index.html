@@ -520,7 +520,7 @@ tr:last-child td{border-bottom:none}
         <p id="stock-print-date" style="margin:4px 0 0;font-size:9pt;color:#555"></p></div>
       </div>
     </div>
-    <div class="card"><div class="tw"><table><thead><tr><th>Product Name</th><th>Category</th><th>Stock</th><th>Status</th><th>No. of Containers/Bags/Cans</th><th>Pack Cost</th><th>Stock Value</th><th class="no-print">Actions</th></tr></thead><tbody id="stock-body"></tbody></table></div></div>
+    <div class="card"><div class="tw"><table><thead><tr><th>Product Name</th><th>Category</th><th>Stock</th><th>Status</th><th>No. of Containers/Bags/Cans</th><th>Pack Size</th><th>Pack Cost</th><th>Stock Value</th><th class="no-print">Actions</th></tr></thead><tbody id="stock-body"></tbody></table></div></div>
   </div>
 </div>
 
@@ -1452,12 +1452,13 @@ function renderStock(){
   orderedCats.forEach(c=>{
     const prods=grouped[c];
     const catVal=prods.reduce((t,p)=>t+parseFloat(p.packCost||0)*parseFloat(p.stock||0),0);
-    html+=`<tr><td colspan="7" style="background:var(--g100);padding:6px 10px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--g600);border-top:2px solid var(--g200)">${catBadge(c)} &nbsp;${c} <span style="font-weight:400">(${prods.length} products)</span><span style="float:right;color:var(--gd);font-weight:700">€${catVal.toLocaleString('en',{minimumFractionDigits:2,maximumFractionDigits:2})}</span></td><td style="background:var(--g100);border-top:2px solid var(--g200)"></td></tr>`;
+    html+=`<tr><td colspan="8" style="background:var(--g100);padding:6px 10px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--g600);border-top:2px solid var(--g200)">${catBadge(c)} &nbsp;${c} <span style="font-weight:400">(${prods.length} products)</span><span style="float:right;color:var(--gd);font-weight:700">€${catVal.toLocaleString('en',{minimumFractionDigits:2,maximumFractionDigits:2})}</span></td><td style="background:var(--g100);border-top:2px solid var(--g200)"></td></tr>`;
     prods.forEach(p=>{
       const sv=(parseFloat(p.packCost||0)*parseFloat(p.stock||0));
       html+=`<tr><td><strong>${p.name}</strong></td><td>${catBadge(p.category)}</td>
         <td><strong style="font-size:14px">${(parseFloat(p.stock||0)*parseFloat(p.unitSize||1)).toFixed(2).replace(/\.00$/,'')}</strong> <small style="color:var(--g400)">${p.unit||''}</small></td>
-        <td>${stockTag(p)}</td><td style="color:var(--g600)">${p.containerCount}</td>
+        <td>${stockTag(p)}</td><td style="color:var(--g600)">${p.containerCount||'—'}</td>
+        <td><strong>${p.unitSize||''}</strong> <small style="color:var(--g400)">${p.unit||''}</small></td>
         <td>€${parseFloat(p.packCost||0).toFixed(2)}</td>
         <td><strong style="color:var(--gd)">€${sv.toFixed(2)}</strong></td>
         <td><div style="display:flex;gap:3px;flex-wrap:wrap"><button class="btn bb sm" onclick="openMove('${p.id}')">📦 Stock</button><button class="btn bs sm" onclick="openEditProd('${p.id}')">✏️</button></div></td></tr>`;
