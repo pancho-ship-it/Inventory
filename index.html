@@ -520,7 +520,7 @@ tr:last-child td{border-bottom:none}
         <p id="stock-print-date" style="margin:4px 0 0;font-size:9pt;color:#555"></p></div>
       </div>
     </div>
-    <div class="card"><div class="tw"><table><thead><tr><th>Product Name</th><th>Category</th><th>Stock</th><th>Status</th><th>No. of Containers/Bags/Cans</th><th>Pack Size</th><th>Pack Cost</th><th>Stock Value</th><th class="no-print">Actions</th></tr></thead><tbody id="stock-body"></tbody></table></div></div>
+    <div class="card"><div class="tw"><table><thead><tr><th>Product Name</th><th>Category</th><th>Stock</th><th>Status</th><th style="text-align:center">No. of Containers/Bags/Cans</th><th>Pack Size</th><th>Pack Cost</th><th>Stock Value</th><th class="no-print">Actions</th></tr></thead><tbody id="stock-body"></tbody></table></div></div>
   </div>
 </div>
 
@@ -1457,7 +1457,7 @@ function renderStock(){
       const sv=(parseFloat(p.packCost||0)*parseFloat(p.stock||0));
       html+=`<tr><td><strong>${p.name}</strong></td><td>${catBadge(p.category)}</td>
         <td><strong style="font-size:14px">${(parseFloat(p.stock||0)*parseFloat(p.unitSize||1)).toFixed(2).replace(/\.00$/,'')}</strong> <small style="color:var(--g400)">${p.unit||''}</small></td>
-        <td>${stockTag(p)}</td><td style="color:var(--g600)">${parseFloat(p.stock||0)}</td>
+        <td>${stockTag(p)}</td><td style="color:var(--g600);text-align:center">${parseFloat(p.stock||0)}</td>
         <td><strong>${p.unitSize||''}</strong> <small style="color:var(--g400)">${p.unit||''}</small></td>
         <td>€${parseFloat(p.packCost||0).toFixed(2)}</td>
         <td><strong style="color:var(--gd)">€${sv.toFixed(2)}</strong></td>
