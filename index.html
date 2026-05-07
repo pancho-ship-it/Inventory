@@ -1416,7 +1416,7 @@ async function saveProd(){
     notes:document.getElementById('pm-notes').value.trim()};
   const id=document.getElementById('pm-id').value;
   try{if(id)await api('/api/products/'+id,'PUT',pl);else await api('/api/products','POST',pl);
-    toast(id?'Updated ✓':'Added ✓');closeM('prod-modal');allProds=[];await loadProds();await loadStock();}catch(e){toast('Error','error');}
+    toast(id?'Updated ✓':'Added ✓');closeM('prod-modal');allProds=[];await loadProds();await loadStock();}catch(e){console.error('saveProd error:',e);toast('Error: '+e.message,'error');}
 }
 async function delProd(id,name){
   if(!confirm(`Delete "${name}"?`))return;
