@@ -1776,7 +1776,7 @@ function filterSprayProds(){
 
   document.getElementById('sl-single-wrap').style.display = isMix ? 'none' : '';
   document.getElementById('sl-mix-wrap').style.display    = isMix ? 'block' : 'none';
-  document.getElementById('sl-rate-wrap').style.display   = isMix ? 'none' : '';
+  document.getElementById('sl-rate-wrap').style.display   = '';
   document.getElementById('sl-mix-count').textContent     = '';
 
   if(isMix){
@@ -1881,6 +1881,7 @@ async function saveSpray(){
     if(mixSelected.size===0){toast('Select at least one product','error');return;}
     const names=[...mixSelected];
     const mixNote=notes||`Tank mix: ${names.join(' + ')}`;
+    const mixRate=parseFloat(document.getElementById('sl-rate').value)||null;
     const btn=document.querySelector('#spray-modal .btn.bp');
     if(btn){btn.disabled=true;btn.textContent='Saving…';}
     let saved=0;
@@ -1890,7 +1891,7 @@ async function saveSpray(){
         const p=allProds.find(x=>x.name===name)||{};
         await api('/api/spraylog','POST',{
           date:fdate, product:name, ai:p.activeIngredient||'',
-          type:'MIX', zone, areaha:area, rate:null, total:null, notes:mixNote
+          type:'MIX', zone, areaha:area, rate:mixRate, total:(mixRate&&area?Math.round(mixRate*area*100)/100:null), notes:mixNote
         });
         saved++;
       }
