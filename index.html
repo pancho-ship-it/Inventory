@@ -23,7 +23,7 @@ header .su{font-size:10px;opacity:.6;margin-top:1px}
 header nav{display:flex;gap:2px;margin-left:auto;flex-wrap:wrap}
 header nav button{background:transparent;border:none;color:rgba(255,255,255,.7);padding:6px 10px;border-radius:5px;cursor:pointer;font-size:12px;font-family:var(--ff);transition:.15s;white-space:nowrap}
 header nav button.active,header nav button:hover{background:rgba(255,255,255,.15);color:#fff}
-main{flex:1;padding:18px;max-width:1400px;width:100%;margin:0 auto}
+main{flex:1;padding:12px;width:100%;margin:0 auto}
 .card{background:#fff;border-radius:var(--r);box-shadow:var(--sh);border:1px solid var(--g200)}
 .ch{padding:13px 16px;border-bottom:1px solid var(--g200);display:flex;align-items:center;gap:7px;flex-wrap:wrap}
 .ch h2{font-size:13px;font-weight:600;flex:1}
@@ -284,17 +284,17 @@ tr:last-child td{border-bottom:none}
         <span id="d-needed-subtitle" style="font-size:10px;color:var(--g400);margin-left:auto"></span>
         <button class="btn bs sm no-print" id="d-needed-toggle" onclick="toggleNeededMonth()" style="margin-left:6px;font-size:10px">→ Next</button>
       </div>
-      <div class="cb" id="d-needed" style="max-height:220px;overflow-y:auto"></div>
+      <div class="cb" id="d-needed" style="max-height:calc(100vh - 340px);min-height:180px;overflow-y:auto"></div>
     </div>
     <!-- Recent sprays -->
     <div class="card">
       <div class="ch">💧<h2>Recent Sprays</h2></div>
-      <div class="cb" id="d-recent-spray" style="max-height:220px;overflow-y:auto"></div>
+      <div class="cb" id="d-recent-spray" style="max-height:calc(100vh - 340px);min-height:180px;overflow-y:auto"></div>
     </div>
     <!-- Stock activity -->
     <div class="card">
       <div class="ch">📋<h2>Stock Activity</h2></div>
-      <div class="cb" id="d-recent" style="max-height:220px;overflow-y:auto"></div>
+      <div class="cb" id="d-recent" style="max-height:calc(100vh - 340px);min-height:180px;overflow-y:auto"></div>
     </div>
   </div>
 
