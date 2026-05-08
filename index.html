@@ -135,7 +135,7 @@ tr:last-child td{border-bottom:none}
 @media print {
   @page { margin: 8mm; size: A4 landscape; }
 
-  /* ── Kill ALL height/spacing on every ancestor of gantt-print-page ── */
+  /* ── Kill ALL height/spacing on page ancestors ── */
   html, body, #app, main {
     display:    block     !important;
     margin:     0         !important;
@@ -153,7 +153,7 @@ tr:last-child td{border-bottom:none}
   .no-screen { display: inline !important; }
 
   /* ── Hide ALL pages, overlays, and the print div by default ── */
-  .page, .overlay, #gantt-print-page {
+  .page, .overlay {
     display:    none      !important;
     height:     0         !important;
     min-height: 0         !important;
@@ -176,30 +176,6 @@ tr:last-child td{border-bottom:none}
   #page-inventory.print-target #inv-stock    { display: block !important; }
   .tb, .tbar button, .ytabs { display: none !important; }
 
-  /* ── CASE 2: Combined Gantt ── */
-  #gantt-print-page.print-target {
-    display:    block     !important;
-    height:     auto      !important;
-    max-height: none      !important;
-    overflow:   visible   !important;
-    margin:     0         !important;
-    padding:    0         !important;
-    width:      100%      !important;
-  }
-  #gantt-print-page.print-target .print-header {
-    display:    block     !important;
-  }
-  #gantt-print-container {
-    margin:     0         !important;
-    padding:    0         !important;
-  }
-  #gantt-print-container svg {
-    width:      100%      !important;
-    height:     auto      !important;
-    display:    block     !important;
-    margin:     0         !important;
-    padding:    0         !important;
-  }
 
   /* ── Tables & cards ── */
   .tw   { overflow: visible !important; max-height: none !important; }
@@ -225,25 +201,7 @@ tr:last-child td{border-bottom:none}
 .inv-tab.active { background:var(--gd); color:#fff; border-color:var(--gd); }
 .inv-tab:hover:not(.active) { background:var(--gl); border-color:var(--ga); }
 
-/* Combined overlay — screen styles */
-#combined-overlay {
-  overflow-y: auto;
-  align-items: flex-start;
-  padding: 20px;
-}
-#combined-overlay #combined-content {
-  background: #fff;
-  border-radius: var(--r);
-  width: 100%;
-  max-width: 1100px;
-  margin: auto;
-  box-shadow: 0 8px 32px rgba(0,0,0,.25);
-  overflow: hidden;
-}
-#gantt-container {
-  overflow-x: auto;
-  min-width: 0;
-}
+
 .print-header { display: none; padding: 0 0 12px; border-bottom: 2px solid var(--gd); margin-bottom: 14px; }
 .print-header h1 { font-size: 16pt; color: var(--gd); margin-bottom: 4px; }
 .print-header p { font-size: 9pt; color: #666; }
@@ -263,13 +221,7 @@ tr:last-child td{border-bottom:none}
 </style>
 </head>
 <body>
-<div id="gantt-print-page" style="display:none">
-  <div class="print-header">
-    <h1>Royal Malta Golf Club — Combined Annual Programme 2026</h1>
-    <p id="combined-print-date2"></p>
-  </div>
-  <div id="gantt-print-container"></div>
-</div>
+
 <div id="app">
 <header>
   <div><div class="lo">⛳ RMGC Maintenance Manager</div><div class="su">Royal Malta Golf Club</div></div>
@@ -279,7 +231,6 @@ tr:last-child td{border-bottom:none}
     <button onclick="nav('inventory',this)">📦 Inventory</button>
     <button onclick="nav('spraylog',this)">💧 Spray Logs</button>
     <button onclick="nav('sds',this)">⚠️ Safety</button>
-    <button onclick="showCombined()">📋 Combined</button>
   </nav>
   <div style="display:flex;align-items:center;gap:8px;margin-left:12px;padding-left:12px;border-left:1px solid rgba(255,255,255,.25);white-space:nowrap">
     <span style="font-size:11px;opacity:.75">👤 {{ current_user }}</span>
@@ -601,34 +552,7 @@ tr:last-child td{border-bottom:none}
 
 
 
-<!-- COMBINED PROGRAMME OVERLAY -->
-<div class="overlay hidden" id="combined-overlay">
-  <div id="combined-content">
-    <!-- Print header -->
-    <div class="print-header">
-      <h1>Royal Malta Golf Club — Combined Annual Programme 2026</h1>
-      <p id="combined-print-date"></p>
-    </div>
-    <!-- Screen-only modal chrome -->
-    <div class="combined-screen-chrome no-print" style="background:var(--gd);color:#fff;padding:14px 20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-      <div>
-        <div style="font-size:15px;font-weight:700">📋 Combined Annual Programme 2026</div>
-        <div style="font-size:11px;color:#a8d5ba;margin-top:2px">Maintenance Schedule + Active KPI Programme</div>
-      </div>
-      <div style="display:flex;gap:8px;margin-left:auto;align-items:center">
-        <button class="btn bpdf sm" onclick="doPrint()" style="font-size:11px">🖨️ Print / PDF</button>
-        <button onclick="closeCombined()" style="background:rgba(255,255,255,.2);color:#fff;border:none;border-radius:50%;width:28px;height:28px;font-size:16px;cursor:pointer;line-height:1">×</button>
-      </div>
-    </div>
-    <!-- Gantt legend (screen) -->
-    <div class="no-print" style="padding:8px 16px 4px;display:flex;gap:10px;flex-wrap:wrap;border-bottom:1px solid var(--g100)">
-      <span style="font-size:12px;font-weight:700;color:var(--gd)">📊 Annual Gantt View</span>
-      <div id="gantt-legend" style="display:flex;gap:10px;flex-wrap:wrap;margin-left:auto"></div>
-    </div>
-    <!-- Gantt container — no overflow wrapper -->
-    <div id="gantt-container" style="padding:12px 16px"></div>
-  </div>
-</div>
+
 
 <!-- PRODUCT MODAL -->
 <div class="overlay hidden" id="prod-modal"><div class="modal">
@@ -1132,13 +1056,6 @@ const PEM_CONFIG = {
     body:  'Please find attached the RMGC KPI Schedule and Progress Report for 2026.',
     fn:    _execPrintKPI
   },
-  combined: {
-    title: 'Combined Annual Programme',
-    desc:  'Print or email the combined Annual Maintenance Schedule + Active KPI Programme — the full 2026 course management plan in one document.',
-    subject: 'RMGC Combined Annual Programme 2026',
-    body:  'Please find attached the RMGC Combined Annual Maintenance & KPI Programme for 2026.',
-    fn:    _execPrintCombined
-  },
   spray2026: {
     title: 'Spray Log 2026',
     desc:  'Print or email the 2026 spray application log.',
@@ -1174,10 +1091,6 @@ function doPrint(){
 // ── Individual print executors ───────────────────────────────────────────────
 function _setPrintTarget(pageId){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('print-target'));
-  const co=document.getElementById('combined-overlay');
-  if(co) co.classList.remove('print-target');
-  const pp=document.getElementById('gantt-print-page');
-  if(pp) pp.classList.remove('print-target');
   document.getElementById(pageId).classList.add('print-target');
 }
 
@@ -2593,212 +2506,6 @@ function updateDashSurvey(){
       </div>`;
     }).join('');
   }
-}
-
-// ══════════════════════════════════════════════════════════════════════════════
-// COMBINED ANNUAL PROGRAMME — Gantt + Detail
-// ══════════════════════════════════════════════════════════════════════════════
-const GANTT_CATS = {
-  "AERATION & TOPDRESSING": { col:'#2d6a4f', light:'#A8D5BA', label:'Aeration'   },
-  "NUTRITION":              { col:'#d97706', light:'#FAD7A0', label:'Nutrition'   },
-  "WETTING AGENTS":         { col:'#0277bd', light:'#AED6F1', label:'Wetting'    },
-  "PLANT PROTECTION":       { col:'#b91c1c', light:'#F1948A', label:'Plant Prot' },
-  "KPI":                    { col:'#1e40af', light:'#bfdbfe', label:'KPI'        }
-};
-const MO_ABBR = ["J","F","M","A","M","J","J","A","S","O","N","D"];
-const MO_FULL_G = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-
-function loadCombined(){
-  loadKPIStore();
-  renderGantt();
-}
-
-function renderGantt(){
-  const container = document.getElementById('gantt-container');
-  if(!container) return;
-
-  // Build rows: maintenance schedule + active KPIs
-  const rows = [];
-  SCHEDULE_DATA.forEach((s,i)=>{
-    rows.push({ label:s.op, cat:s.cat, months:s.months, type:'sched', idx:i });
-  });
-  KPI_DATA.filter(k=>kpiActive.includes(k.id)&&k.months.length>0).forEach(k=>{
-    rows.push({ label:`KPI ${k.id}: ${k.title}`, cat:'KPI', months:k.months, type:'kpi', id:k.id });
-  });
-
-  // Legend
-  const leg = document.getElementById('gantt-legend');
-  if(leg) leg.innerHTML = Object.entries(GANTT_CATS).map(([,v])=>
-    `<div style="display:flex;align-items:center;gap:4px;font-size:10px;color:var(--g600)">
-      <div style="width:12px;height:12px;background:${v.col};border-radius:2px"></div>${v.label}
-    </div>`).join('');
-
-  const ROW_H=22, LABEL_W=230, CELL_W=32, HEADER_H=28;
-  const TOTAL_W = LABEL_W + 12*CELL_W + 52;
-  const HEIGHT  = HEADER_H + rows.length*ROW_H + 4;
-
-  let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 ${TOTAL_W} ${HEIGHT}" style="font-family:Arial,sans-serif;display:block">`;
-
-  // Background stripes
-  rows.forEach((_,i)=>{
-    svg += `<rect x="0" y="${HEADER_H+i*ROW_H}" width="${TOTAL_W}" height="${ROW_H}" fill="${i%2===0?'#fff':'#f9fafb'}"/>`;
-  });
-
-  // Month columns header + grid lines
-  MO_ABBR.forEach((m,mi)=>{
-    const x=LABEL_W+mi*CELL_W;
-    svg += `<rect x="${x}" y="0" width="${CELL_W}" height="${HEADER_H}" fill="#1a4731"/>`;
-    svg += `<text x="${x+CELL_W/2}" y="${HEADER_H-8}" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">${m}</text>`;
-    svg += `<line x1="${x}" y1="${HEADER_H}" x2="${x}" y2="${HEIGHT}" stroke="#e5e7eb" stroke-width="1"/>`;
-  });
-  svg += `<line x1="${LABEL_W+12*CELL_W}" y1="${HEADER_H}" x2="${LABEL_W+12*CELL_W}" y2="${HEIGHT}" stroke="#e5e7eb" stroke-width="1"/>`;
-  svg += `<rect x="0" y="0" width="${LABEL_W}" height="${HEADER_H}" fill="#1a4731"/>`;
-  svg += `<text x="8" y="${HEADER_H-8}" fill="#fff" font-size="11" font-weight="600">Operation / KPI</text>`;
-  svg += `<text x="${LABEL_W+12*CELL_W+6}" y="${HEADER_H-8}" fill="#fff" font-size="9" font-weight="600">Done</text>`;
-
-  // Rows
-  let lastCat=null;
-  rows.forEach((r,i)=>{
-    const y=HEADER_H+i*ROW_H;
-    const cfg=GANTT_CATS[r.cat]||GANTT_CATS["KPI"];
-    if(r.cat!==lastCat){
-      svg+=`<rect x="0" y="${y}" width="${LABEL_W}" height="2" fill="${cfg.col}" opacity="0.5"/>`;
-      lastCat=r.cat;
-    }
-    const lbl = r.label.length>36 ? r.label.slice(0,35)+'…' : r.label;
-    svg+=`<text x="6" y="${y+ROW_H-6}" fill="${cfg.col}" font-size="9.5" font-weight="${r.type==='kpi'?'700':'400'}">${lbl}</text>`;
-    MO_FULL_G.forEach((m,mi)=>{
-      if(!r.months.includes(m)) return;
-      const bx=LABEL_W+mi*CELL_W+2, by=y+3, bw=CELL_W-4, bh=ROW_H-7;
-      const ticked = r.type==='sched' ? !!schTicked[r.idx+'-'+mi] : !!kpiTicked[r.id+'-'+m];
-      svg+=`<rect x="${bx}" y="${by}" width="${bw}" height="${bh}" rx="3" fill="${ticked?cfg.col:cfg.light}"/>`;
-      if(ticked) svg+=`<text x="${bx+bw/2}" y="${by+bh-2}" text-anchor="middle" fill="#fff" font-size="9" font-weight="700">✓</text>`;
-    });
-    const doneN = r.type==='sched'
-      ? MO_FULL_G.filter((m,mi)=>r.months.includes(m)&&schTicked[r.idx+'-'+mi]).length
-      : r.months.filter(m=>kpiTicked[r.id+'-'+m]).length;
-    const totN  = r.months.length;
-    svg+=`<text x="${LABEL_W+12*CELL_W+6}" y="${y+ROW_H-6}" fill="${doneN===totN?'#16a34a':'#9ca3af'}" font-size="9">${doneN}/${totN}</text>`;
-    svg+=`<line x1="0" y1="${y}" x2="${TOTAL_W}" y2="${y}" stroke="#e5e7eb" stroke-width="0.5"/>`;
-  });
-  svg+='</svg>';
-  container.innerHTML=svg;
-}
-
-function renderCombinedDetail(){
-  const el=document.getElementById('combined-detail');
-  if(!el) return;
-  let html='';
-  // Maintenance
-  html+='<div style="padding:8px 14px;font-size:11px;font-weight:700;color:var(--gd);background:var(--g50);border-top:2px solid var(--gd)">📅 Annual Maintenance Schedule</div>';
-  const cats=[...new Set(SCHEDULE_DATA.map(s=>s.cat))];
-  cats.forEach(cat=>{
-    const cfg=GANTT_CATS[cat]||{col:'#555',light:'#eee'};
-    html+='<div style="padding:4px 14px 2px;font-size:10px;font-weight:700;color:'+cfg.col+';text-transform:uppercase;letter-spacing:.5px;background:'+cfg.light+'50">'+cat+'</div>';
-    SCHEDULE_DATA.filter(s=>s.cat===cat).forEach(s=>{
-      const opIdx=SCHEDULE_DATA.indexOf(s);
-      const done=MO_FULL_G.filter((m,mi)=>s.months.includes(m)&&schTicked[opIdx+'-'+mi]).length;
-      const tot=s.months.length;
-      const col=done===tot&&tot>0?'#16a34a':'var(--g400)';
-      html+='<div style="display:flex;align-items:center;gap:10px;padding:5px 14px;border-bottom:1px solid var(--g100)">'
-        +'<div style="flex:1;font-size:11px">'+s.op+'</div>'
-        +'<div style="font-size:10px;color:var(--g400);min-width:150px">'+s.months.join(', ')+'</div>'
-        +'<div style="font-size:11px;font-weight:700;color:'+col+';min-width:40px;text-align:right">'+done+'/'+tot+'</div>'
-        +'</div>';
-    });
-  });
-  // KPIs
-  const activeKPIs=KPI_DATA.filter(k=>kpiActive.includes(k.id));
-  html+='<div style="padding:8px 14px;font-size:11px;font-weight:700;color:#1e40af;background:#eff6ff;border-top:2px solid #1e40af;margin-top:8px">🎯 KPI Programme ('+activeKPIs.length+' active)</div>';
-  activeKPIs.forEach(k=>{
-    const done=k.months.filter(m=>kpiTicked[k.id+'-'+m]).length;
-    const tot=k.months.length;
-    const col=done===tot&&tot>0?'#1e40af':'var(--g400)';
-    html+='<div style="padding:7px 14px;border-bottom:1px solid #dbeafe">'
-      +'<div style="display:flex;align-items:flex-start;gap:10px">'
-        +'<div style="flex:1">'
-          +'<div style="font-size:11px;font-weight:700;color:#1e40af">'+k.id+'. '+k.title+'</div>'
-          +'<div style="font-size:10px;color:var(--g600);margin-top:1px">'+k.kpi+'</div>'
-        +'</div>'
-        +'<div style="font-size:10px;color:var(--g400);min-width:150px">'+(k.months.length>0?k.months.join(', '):'TBD')+'</div>'
-        +'<div style="font-size:11px;font-weight:700;color:'+col+';min-width:40px;text-align:right">'+(tot>0?done+'/'+tot:'—')+'</div>'
-      +'</div>'
-      +'<div style="font-size:10px;color:var(--g400);margin-top:3px">Cost: '+k.cost+' · '+k.actions.join(' · ')+'</div>'
-      +'</div>';
-  });
-  el.innerHTML=html;
-}
-
-// Combined print executor — uses the on-screen page
-function _execPrintCombined(){
-  loadKPIStore();
-
-  // Show overlay temporarily so SVG renders at full size
-  const overlay = document.getElementById('combined-overlay');
-  const wasHidden = overlay.classList.contains('hidden');
-  overlay.classList.remove('hidden');
-  overlay.style.visibility = 'hidden';
-
-  setTimeout(function(){
-    renderGantt();
-    setTimeout(function(){
-      const svgEl = document.querySelector('#gantt-container svg');
-
-      // Restore overlay state
-      overlay.style.visibility = '';
-      if(wasHidden) overlay.classList.add('hidden');
-
-      if(!svgEl){ toast('Gantt not ready — try again','error'); return; }
-
-      const svgHTML = svgEl.outerHTML;
-
-      // Build a minimal print page — NO header, just the SVG
-      const printHTML = [
-        '<!DOCTYPE html><html><head><meta charset="UTF-8">',
-        '<style>',
-        '@page{margin:5mm;size:A4 landscape;}',
-        'html,body{margin:0;padding:0;background:#fff;}',
-        'svg{width:100%;height:auto;display:block;}',
-        '</style></head><body>',
-        svgHTML,
-        '<script>',
-        'window.addEventListener("load",function(){',
-        '  window.print();',
-        '  setTimeout(function(){window.close();},2000);',
-        '});',
-        '<\/script>',
-        '</body></html>'
-      ].join('');
-
-      // Open as blob URL in new tab
-      const blob = new Blob([printHTML], {type:'text/html'});
-      const url  = URL.createObjectURL(blob);
-      const a    = document.createElement('a');
-      a.href   = url;
-      a.target = '_blank';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      setTimeout(function(){ URL.revokeObjectURL(url); }, 10000);
-
-    }, 400);
-  }, 50);
-}
-
-function closeCombined(){
-  document.getElementById('combined-overlay').classList.add('hidden');
-  document.body.style.overflow='';
-}
-
-function showCombined(){
-  loadKPIStore();
-  renderGantt();
-  document.getElementById('combined-overlay').classList.remove('hidden');
-  document.body.style.overflow='hidden';
-  // Pre-fill print modal for combined
-  document.getElementById('ppm-title').textContent = 'Combined Annual Programme';
-  document.getElementById('ppm-desc').textContent  = 'Prints the full combined Gantt schedule and active KPI programme.';
-  _pendingPrintFn = _execPrintCombined;
 }
 
 
